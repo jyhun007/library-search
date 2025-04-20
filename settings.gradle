@@ -1,1 +1,5 @@
 rootProject.name = 'library-search'
+include 'common'
+include 'external'
+include 'search-api'
+
