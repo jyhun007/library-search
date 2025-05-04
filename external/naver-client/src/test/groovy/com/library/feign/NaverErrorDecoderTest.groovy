@@ -1,9 +1,12 @@
 package com.library.feign
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.library.ApiException
+import com.library.ErrorType
 import com.library.NaverErrorResponse
 import feign.Request
 import feign.Response
+import org.springframework.http.HttpStatus
 import spock.lang.Specification
 
 class NaverErrorDecoderTest extends Specification {
@@ -24,12 +27,17 @@ class NaverErrorDecoderTest extends Specification {
         1 * responseBody.asInputStream() >> inputStream
         1 * objectMapper.readValue(*_) >> new NaverErrorResponse("error!!", "SE03")
 
+
         when:
         errorDecoder.decode(_ as String, response)
 
         then:
-        RuntimeException e = thrown();
-        e.message == "error!!"
+        ApiException e = thrown();
+        verifyAll {
+            e.errorMessage == "error!!"
+            e.httpStatus == HttpStatus.BAD_REQUEST
+            e.errorType == ErrorType.EXTERNAL_API_ERROR
+        }
     }
 
 }
