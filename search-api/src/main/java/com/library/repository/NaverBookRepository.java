@@ -6,10 +6,13 @@ import com.library.controller.response.PageResult;
 import com.library.controller.response.SearchResponse;
 import com.library.feign.NaverClient;
 import com.library.util.DateUtils;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Repository
 public class NaverBookRepository implements BookRepository {
     private final NaverClient naverClient;
 
