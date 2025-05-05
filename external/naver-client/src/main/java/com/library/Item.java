@@ -2,13 +2,15 @@ package com.library;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
+
+import java.util.LinkedHashMap;
 
 @Getter
 @ToString
-@AllArgsConstructor
+@NoArgsConstructor
+//@Builder
+//@AllArgsConstructor
 public class Item {
     private String title;
     private String link;
@@ -20,5 +22,13 @@ public class Item {
     private String pubDate;
     private String isbn;
     private String description;
+
+//    public Item(String title, String author, String publisher, String pubDate, String isbn) {
+//        this.title = title;
+//        this.author = author;
+//        this.publisher = publisher;
+//        this.pubDate = pubDate;
+//        this.isbn = isbn;
+//    }
 
 }
